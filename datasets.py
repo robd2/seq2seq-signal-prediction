@@ -43,19 +43,24 @@ def generate_x_y_data_v1(isTrain, batch_size):
         x2 = sig2[:seq_length]
         y2 = sig2[seq_length:]
 
-        x_ = np.array([x1, x2])
-        y_ = np.array([y1, y2])
+        x3 = [1,0.95,0.90,0.85,0.80,0.75,0.70,0.65,0.60,0.55]    #new here
+        y3 = [0.50,0.45,0.40,0.35,0.30,0.25,0.20,0.15,0.10,0.05]
+
+        
+        x_ = np.array([x1, x2, x3])   # added x3 here :))))
+        y_ = np.array([y1, y2, y3])   # added y3 here :))))
         x_, y_ = x_.T, y_.T
 
         batch_x.append(x_)
         batch_y.append(y_)
+        #print (batch_x)
 
     batch_x = np.array(batch_x)
     batch_y = np.array(batch_y)
     # shape: (batch_size, seq_length, output_dim)
 
-    batch_x = np.array(batch_x).transpose((1, 0, 2))
-    batch_y = np.array(batch_y).transpose((1, 0, 2))
+    batch_x = np.array(batch_x).transpose((1, 0, 2))   # 2 to 3 : ))))
+    batch_y = np.array(batch_y).transpose((1, 0, 2))   # 2 to 3 : ))))
     # shape: (seq_length, batch_size, output_dim)
 
     return batch_x, batch_y
